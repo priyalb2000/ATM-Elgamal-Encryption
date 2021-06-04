@@ -54,12 +54,12 @@ def register():
 
             Label(
                 newWin,
-                text = "Registration Successful",
+                text = "Registration Successful" + Nm + "!",
                 bg = "gray7",
                 fg = "White",
                 font = "Consolas 20"
             ).place(
-                x = 580,
+                x = 550,
                 y = 300
             )
             Button(
