@@ -2,8 +2,13 @@ import random
 from math import pow
 import hashlib
 import time
+
+random.seed(42)
+
 start = time.time()
+
 a = 7
+
 def gcd(a, b): 
     if a < b:
         return gcd(b, a)
@@ -11,6 +16,7 @@ def gcd(a, b):
         return b
     else:
         return gcd(b, a % b)
+    
 # Generating large random numbers
 def gen_key(q):
     key = 12345678998765432123456789
@@ -18,6 +24,7 @@ def gen_key(q):
     while gcd(q, key) != 1:
         key = random.randint(pow(10, 20), q)
     return key
+
 # Modular exponentiation
 def power(a, b, c):
     x = 1
@@ -28,6 +35,7 @@ def power(a, b, c):
         y = (y * y) % c
         b = int(b / 2)
     return x % c
+
 # Asymmetric encryption
 def encrypt(msg, q, h, g):
     en_msg = []
@@ -42,15 +50,18 @@ def encrypt(msg, q, h, g):
     for i in range(0, len(en_msg)): 
         en_msg[i] = s * ord(en_msg[i])
     print ('Encrypted pin : ', en_msg)
-    output = hashlib.sha256(str(en_msg[1]).encode('utf-8')).hexdigest()
+    hashPass = en_msg[0]*3 + en_msg[1]*5 + en_msg[2]*7 + en_msg[3]*9
+    output = hashlib.sha256(str(hashPass).encode('utf-8')).hexdigest()
     print ('Hash generated : ',output)
     return en_msg, p, output
+
 def decrypt(en_msg, p, key, q):
     dr_msg = []
     h = power(p, key, q)
     for i in range(0, len(en_msg)):
         dr_msg.append(chr(int(int(en_msg[i])/h)))
     return dr_msg
+
 # Driver code
 def main():
     msg = input('Enter 4 digit pin : ')
@@ -68,5 +79,6 @@ def main():
     dmsg = ''.join(dr_msg)
     print("Decrypted Message : ", dmsg)
     print(end-start)
+    
 if __name__ == '__main__':
     main()
