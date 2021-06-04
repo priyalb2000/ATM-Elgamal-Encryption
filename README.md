@@ -2,8 +2,14 @@
 
 Intergrated Elgamal encryption with SHA 256 authentication with a Python GUI interface.
 
-Import tkinter python library
+Install/Import tkinter python library. 
 
-auth.py is connected to home.py
+This library is used to create GUI interface with python for Desktop App.
 
-Run home.py and user interface will be launched.
+auth.py is connected to main.py
+
+Run main.py and user interface will be launched.
+
+hashDir.json has sample hashed pins and Names stored, change according to requirement.
+
+Save all three files in the same folder
